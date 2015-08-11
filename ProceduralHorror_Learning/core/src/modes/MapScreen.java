@@ -21,28 +21,21 @@ public class MapScreen implements Screen{
 	private IComunicator text;
 	private StringBuilder map;
 	private MapMaker mapCells;
-	private Cell cells[][];
 	private Player player;
 	
 	public MapScreen (ProceduralHorror game) {
 		this.game = game;
 		map = new StringBuilder();
 		mapCells = new MapMaker();
-		cells = mapCells.getMap();
 		this.player = new Player();
 	}
 	
 	@Override
 	public void show() {
-		mapCells.makeRooms(10);
+		mapCells.createMap(10, this.player);
 		
 		// Convert cells to String and build what needs to be printed
-		for(Cell[] cellRow : cells) {
-			for(Cell cell : cellRow) {
-				map.append(cell.getReference());
-			}
-			map.append("\n");
-		}
+		map = mapCells.mapToStringBuilder();
 		
 		text = new TextComunicator(new SpriteBatch(), new BitmapFont(Gdx.files.internal("Fonts/proggy.fnt")));
 		text.newText(map.toString(), 30, 460, Gdx.graphics.getWidth() - 100f, false, false);
@@ -55,15 +48,9 @@ public class MapScreen implements Screen{
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-			mapCells.makeRooms(10);
-			player.Spawn(mapCells.getRooms(), mapCells.getMap());
+			mapCells.createMap(10, this.player);
 			map = new StringBuilder();
-			for(Cell[] cellRow : cells) {
-				for(Cell cell : cellRow) {
-					map.append(cell.getReference());
-				}
-				map.append("\n");
-			}
+			map = mapCells.mapToStringBuilder();
 			text.newText(map.toString(), 30, 460, Gdx.graphics.getWidth() - 100f, false, false);
 		}
 		text.draw();

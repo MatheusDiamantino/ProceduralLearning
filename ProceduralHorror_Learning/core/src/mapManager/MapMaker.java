@@ -3,6 +3,8 @@ package mapManager;
 import java.util.ArrayList;
 import java.util.Random;
 
+import playerManager.Player;
+
 public class MapMaker {
 	
 	public static final int SIZE_X = 35, SIZE_Y = 25;
@@ -30,7 +32,7 @@ public class MapMaker {
 	}
 	
 	// Creates all the rooms on the map
-	public void makeRooms (int nRooms) {
+	public void createMap (int nRooms, Player player) {
 		// Flag representing if the room has been created successfully or not
 		boolean failed = false;
 		// Clear the room array to make a hole new map
@@ -74,6 +76,7 @@ public class MapMaker {
 			this.makeCorridor(rooms.get(j), rooms.get(j+1));
 		}
 		
+		player.Spawn(rooms, this.getMap());
 	}
 	
 	// Creates a corridor between two rooms
@@ -93,6 +96,20 @@ public class MapMaker {
 	
 	public ArrayList<Room> getRooms () {
 		return this.rooms;
+	}
+	
+	public StringBuilder mapToStringBuilder () {
+		StringBuilder map = new StringBuilder();
+		
+		if (cell.length != 0) {
+			for(Cell[] cellRow : cell) {
+				for(Cell cells : cellRow) {
+					map.append(cells.getReference());
+				}
+			}
+		}
+		
+		return map;
 	}
 	
 }

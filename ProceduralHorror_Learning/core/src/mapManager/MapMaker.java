@@ -22,7 +22,7 @@ public class MapMaker {
 		for(int y = 0; y < SIZE_Y; y++) {
 			for(int x = 0; x < SIZE_X; x++) {
 				this.cell[y][x] = new Cell();
-				this.cell[y][x].setWall(true, false); 
+				this.cell[y][x].setReference("WALL"); 
 			}
 		}
 	}
@@ -41,7 +41,7 @@ public class MapMaker {
 		// Set all the positions to be a wall
 		for(int y = 0; y < SIZE_Y; y++) {
 			for(int x = 0; x < SIZE_X; x++) {
-				this.cell[y][x].setWall(true, false); 
+				this.cell[y][x].setReference("WALL"); 
 			}
 		}
 
@@ -65,7 +65,7 @@ public class MapMaker {
 				rooms.add(room);
 				for(int y = room.getCenterY(); y < room.getCenterY() + room.getSizeY() && y < SIZE_Y - 1; y++) {
 					for(int x = room.getCenterX(); x < room.getCenterX() + room.getSizeX() && x < SIZE_X - 1; x++) {
-						this.cell[y][x].setWall(false, false); 
+						this.cell[y][x].setReference("FLOOR"); 
 					}
 				}
 			}
@@ -87,10 +87,10 @@ public class MapMaker {
 				centerY2 = (2 * r2.getCenterY() + r2.getSizeY()) / 2;
 		
 		for(int x = Math.min(centerX1, centerX2); x <= Math.max(centerX1, centerX2); x++ ) {
-			this.cell[centerY1][x].setWall(false, false);
+			this.cell[centerY1][x].setReference("FLOOR");
 		}
 		for(int y = Math.min(centerY1, centerY2); y < Math.max(centerY1, centerY2); y++ ) {
-				this.cell[y][centerX2].setWall(false, false);
+				this.cell[y][centerX2].setReference("FLOOR");
 			}
 	}
 	

@@ -25,7 +25,7 @@ public class Player {
 		posX = room.getCenterX() + rand.nextInt(room.getSizeX());
 		posY = room.getCenterY() + rand.nextInt(room.getSizeY());
 		
-		map[posY][posX].setWall(false, true);
+		map[posY][posX].setReference("PLAYER");
 		
 		return false;
 	}

@@ -28,15 +28,14 @@ public class MapScreen implements Screen{
 		map = new StringBuilder();
 		mapCells = new MapMaker();
 		this.player = new Player();
+		
+		mapCells.createMap(10, this.player);
+		// Convert cells to String and build what needs to be printed
+		map = mapCells.mapToStringBuilder();
 	}
 	
 	@Override
 	public void show() {
-		mapCells.createMap(10, this.player);
-		
-		// Convert cells to String and build what needs to be printed
-		map = mapCells.mapToStringBuilder();
-		
 		text = new TextComunicator(new SpriteBatch(), new BitmapFont(Gdx.files.internal("Fonts/proggy.fnt")));
 		text.newText(map.toString(), 30, 460, Gdx.graphics.getWidth() - 100f, false, false);
 		
@@ -57,6 +56,10 @@ public class MapScreen implements Screen{
 		
 		if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 			Gdx.app.exit();
+		}
+		
+		if(Gdx.input.isKeyJustPressed(Input.Keys.A)) {
+			game.setScreen(game.titleScreen);
 		}
 		
 	}

@@ -2,7 +2,7 @@ package mapManager;
 
 public class Cell {
 	
-	private enum references {DOOR, WALL, FLOOR, PLAYER, ENEMY, ITEM};
+	//private enum references {DOOR, WALL, FLOOR, PLAYER, ENEMY, ITEM};
 	private String reference;
 	
 	public Cell() {

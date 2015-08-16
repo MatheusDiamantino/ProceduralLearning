@@ -8,9 +8,10 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.mygdx.game.IComunicator;
-import com.mygdx.game.TextComunicator;
 import com.mygdx.game.ProceduralHorror;
+
+import textDrawSystem.IComunicator;
+import textDrawSystem.TextComunicator;
 
 public class TitleScreen implements Screen{
 	
